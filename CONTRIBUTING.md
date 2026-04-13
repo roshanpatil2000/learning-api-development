@@ -1,6 +1,6 @@
 # Contributing Guide
 
-Thanks for contributing to this project.
+Thanks for contributing to this project!
 
 ## Prerequisites
 
