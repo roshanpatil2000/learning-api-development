@@ -1,12 +1,23 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // app.useGlobalInterceptors(new LoggerInterceptor());
+  const config = new DocumentBuilder()
+    .setTitle('Learning API')
+    .setDescription('The Learning API Development')
+    .setVersion('1.0')
+    .build();
+
+  const documentFactory = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api-doc', app, documentFactory);
+
   await app.listen(process.env.PORT || 3000);
-  Logger.log(`Server is running on http://localhost:${process.env.PORT || 3000}\n\n`);
+  Logger.log(
+    `Server is running on http://localhost:${process.env.PORT || 3000}\n\n`,
+  );
 }
 bootstrap();
