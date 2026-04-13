@@ -8,7 +8,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Learning API')
-    .setDescription('The Learning API Development')
+    .setDescription('The API Development Learning with NestJS')
     .setVersion('1.0')
     .build();
 
@@ -16,8 +16,12 @@ async function bootstrap() {
   SwaggerModule.setup('api-doc', app, documentFactory);
 
   await app.listen(process.env.PORT || 3000);
+  Logger.log('\n');
   Logger.log(
-    `Server is running on http://localhost:${process.env.PORT || 3000}\n\n`,
+    `Server is running on http://localhost:${process.env.PORT || 3000}\n`,
+  );
+  Logger.log(
+    `API documentation is available on http://localhost:${process.env.PORT || 3000}/api-doc\n`,
   );
 }
 bootstrap();
